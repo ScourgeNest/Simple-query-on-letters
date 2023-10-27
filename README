@@ -1,0 +1,248 @@
+	Problema 1 - infinite_product
+	
+	
+	
+Fisierul infinite_product.c contine 2 biblioteci: <stdio.h> si <math.h>.
+Am folosit #define ull unsigned long long pentru a face liniile de cod mai scurte si mai usor de citit.
+Acesta contine 5 functii:
+
+-baza_8_in_baza_10 - Care transforma un numar din baza 8 in baza 10 cu ajutorul a 2 variabile intermediare (Are un parametru, acesta fiind numarul in baza 8).
+In prima variabila tin puterile lui 8, pe rand, incepand de la 1 (8 la puterea 0).
+In a doua variabila voi tine numarul in baza 10, adica rezultatul.
+Cat timp numarul din baza 8, cel initial, este diferit de 0, ii iau ultima cifra si o inmultesc cu puterea lui 8 corespunzatoare ei
+(8^0 apoi 8^1 apoi 8^2 si tot asa pana cand numarul ramane fara cifre),
+rezultatul adunandu-l la cea de-a doua variabila unde tin rezultatul.
+Apoi elimin ultima cifra si repet procesul pana cand am valoarea 0 in numarul initial, dupa care returnez numarul in baza 10.
+
+-cond_a - Care contine conditiile prin care trebuia sa treaca fiecare coordonata a primului vector
+Aceasta functie contine 5 parametrii:*
+	-coordonata vectorului a (ai)
+	-al doilea maxim al coordonatelor lui a (pe care l-am trimis prin pointer, pentru ca se modifica - pa_max)
+	-primul maxim al coordonatelor lui a (pe care l-am trimis prin pointer, pentru ca se modifica - pa_max_int)
+	-o variabila care tine minte daca al doilea maxim este initializat cu 0 sau daca i s-a atribuit valoarea 0(pe care l-am trimis prin pointer, pentru ca se modifica - p_0a)
+	-o variabila care tine minte daca primul maxim este initializat cu 0 sau daca i s-a atribuit valoarea 0(pe care l-am trimis prin pointer, pentru ca se modifica - p_0a_int)
+	Functia Trece coordonata prin mai multe conditii pentru a vedea daca aceasta este un nou maxim.
+	
+-cond_b - Face acelasi lucru ca cond_a doar ca pentru coordonatele celui de-al doilea vector.
+
+-afis_max - Afiseaza "-1" daca nu exista al doilea maxim sau maximul in caz ca exista.
+
+-main - Care contine toate variabilele de care am avut nevoie pentru a rezolva exercitiul, pentru multe dintre ele am creat pointeri pentru ca se modifica in interiorul functiilor.
+Variabile Folosite:
+	-ps (Produs scalar)
+	-a_max (al doilea maxim din vect a)
+	-b_max (al doilea maxim din vect b)
+	-pa_max (pointer pt a_max)
+	-pb_max (pointer pt b_max)
+	-a_max_int (maximul din vect a)
+	-b_max_int (maximul din vect b)
+	-pa_max_int (pointer pt a_max_int)
+	-pb_max_int (pointer pt b_max_int)
+	-nr_0a (tin minte daca a_max este initializat cu 0, sau maximul este 0)
+	-nr_0b (tin minte daca b_max este initializat cu 0, sau maximul este 0)
+	-p_0a (pointer pt nr_0a)
+	-p_0b (pointer pt nr_0b)
+	-nr_0a_int (tin minte daca a_max_int este initializat cu 0, sau maximul este 0)
+	-nr_0b_int (tin minte daca b_max_int este initializat cu 0, sau maximul este 0)
+	-p_0a_int (pointer pt nr_0a_int)
+	-p_0b_int (pointer pt nr_0b_int)
+	-n_a (norma lui a)
+	-n_b (norma lui b)
+Citesc nr de coordonate (N) ale celor 2 vectori, dupa care citesc N coordonate pentru fiecare vector.
+Fiecare coordonata o transform in baza 10, folosind functia de mai sus, apoi calculez imediat produsul scalar, o trec prin toate conditiile pentru a determina maximul, folosind functiile de mai sus, dar si pentru a calcula norma vectorului (folosind formulele date), pentru a nu folosi un vector in care sa stochez toate coordonatele.
+La sfarsit afisez produsul scalar, maximul in cazul in care exista(daca nu exista afisez "-1"), si norma fiecarui vector.
+
+
+
+
+
+	Problema 2 - simple_queries
+	
+	
+	
+	
+Folosesc biblioteca <stdio.h>
+Am folosit #define ull unsigned long long pentru a face liniile de cod mai scurte si mai usor de citit.
+Fisierul contine 6 functii:
+
+-afis_fract_ired  care afiseaza fractia ireductibila pornind de la fractia a/b. (unde a si b sunt 2 variabile trimise ca parametru).
+Folosesc algoritmul lui Euclid pt a determina cmmdc dintre a si b ca ma apoi sa simplific fractia si sa o afisez.
+
+-q_query (Are ca parametru vectorul de aparitii - aparitii[])
+Functia aceasta este folosita cand intalneste caracterul 'Q'.
+Aceasta citeste un caracter si afiseaza de cate ori a aparut acel caracter pana in momentul executiei.
+
+-t_query (Are ca parametru vectorul de aparitii - aparitii[])
+Functia aceasta este folosita cand intalneste caracterul 'T'.
+Functia citeste un numar(k) si afiseaza primele k caractere care apar de cele mai multe ori pana in momentul executiei. Functia parcurge toate literele si cauta maximul de aparitii, daca e folosit, cauta al 2-lea maxim si tot asa pana afiseaza k maxime.
+Variabila ok e folosita pentru a afisa primul element fara spatiu, si prin urmare nu voi afisa un spatiu dupa ultimul element.
+
+-e_query (Are ca parametrii vectorul de aparitii - aparitii[], dar si contorul in care se afla numarul total de caractere citite)
+Functia aceasta este folosita cand intalneste caracterul 'E'.
+Citeste un caracter, apoi sterge aparitiile acestuia din vectorul de aparitii, dar si din contor.
+
+-verif_alerta (Are ca parametrii contorul, vect de aparitii, ultimul caracter citit si adresa alertei)
+Functia verifica daca au fost citite cel putin 5 caractere si cel putin 2 diferite, apoi verifica daca se poate afisa o alerta.
+Daca da, verifica pentru fiecare litera daca indeplineste conditia si apoi afiseaza, daca este cazul.
+
+-main 
+Contine Variabilele:
+-aparitii[26] - unde tine minte nr de aparitii ale caracterelor de la 'a' la 'z' (este initializat cu 0)
+-contor - numar de fiecare data cand este citit un caracter.
+-pointer_contor - este un pointer pt contor
+-alert - vad daca pot afisa o alerta sau nu
+-pointer_alerta (pointer pt alert)
+-car - caracterul pe care il tot citesc
+-exec_terminata - este '0', devine '1' daca este intalnit caracterul X.
+
+Programul citeste caractere pana cand unul din ele este diferit de cele propuse.
+Spatiile nu sunt bagate in seama (acestea au codul ASCII - 10).
+Daca este o litera mica se creste contorul si daca a fost afisata o alerta recent, se scade timer-ul alertei.
+daca intalneste caracterul 'X' exec_terminata devine '1' si caracterele de dupa el nu mai sunt luate in calcul.
+Daca nu este oprita executia programului este crescut nr de aparitii ale caracterului citit.
+Se verifica daca trebuia afisata o alerta.
+Daca caracterul este 'Q' si executia nu este terminata se intra in functia "q_query".
+Daca caracterul este 'T' si executia nu este terminata se intra in functia "t_query".
+Daca caracterul este 'E' si executia nu este terminata se intra in functia "e_query".
+
+
+
+
+	Problema 3 - gigel_and_the_checkboard
+	
+	
+	
+Folosesc biblioteca <stdio.h>
+Am folosit #define ull unsigned long long pentru a face liniile de cod mai scurte si mai usor de citit.
+Am folosit #define ll long long pentru a face liniile de cod mai scurte si mai usor de citit.
+Fisierul contine 10 functii:
+
+-convertor (are ca parametru nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie si dimensiunea tablei de sah)
+Functia calculeaza pe ce patratica va ajunge piesa dupa ce va parcurge nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie.
+
+-verif (are ca parametru nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie si dimensiunea tablei de sah)
+Functia calculeaza daca nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie depaseste dimensiunile tablei de sah.
+
+-patratel_alb_impar (Are ca parametrii tabla de sah, coordonata i, coordonata j, pointer la distanta si dimensiunea tablei de sah)
+Aceasta functie va fi apelata doar daca suma coordonatelor i+j este numar impar si alb_impar este 1.
+in primul rand aduna nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie la distanta totala parcursa.
+Apoi verific daca piesa de sah va iesi din tabla, daca da, valoarea se converteste folosind functia convertor, daca nu, piesa de sah se va duce pe patratica calculata cu ajutorul numarului de pe biletel, dupa care biletelul va fi sters de acolo.
+
+-patratel_alb_par (Are ca parametrii tabla de sah, coordonata i, coordonata j, pointer la distanta si dimensiunea tablei de sah)
+Aceasta functie va fi apelata doar daca suma coordonatelor i+j este numar par si alb_impar este 0.
+in primul rand aduna nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie la distanta totala parcursa.
+Apoi verific daca piesa de sah va iesi din tabla, daca da, valoarea se converteste folosind functia convertor, daca nu, piesa de sah se va duce pe patratica calculata cu ajutorul numarului de pe biletel, dupa care biletelul va fi sters de acolo.
+
+-patratel_negru_par (Are ca parametrii tabla de sah, coordonata i, coordonata j, pointer la distanta si dimensiunea tablei de sah)
+Aceasta functie va fi apelata doar daca suma coordonatelor i+j este numar par si alb_impar este 1.
+in primul rand aduna nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie la distanta totala parcursa.
+Apoi verific daca piesa de sah va iesi din tabla, daca da, valoarea se converteste folosind functia convertor, daca nu, piesa de sah se va duce pe patratica calculata cu ajutorul numarului de pe biletel, dupa care biletelul va fi sters de acolo.
+
+-patratel_negru_impar (Are ca parametrii tabla de sah, coordonata i, coordonata j, pointer la distanta si dimensiunea tablei de sah)
+Aceasta functie va fi apelata doar daca suma coordonatelor i+j este numar impar si alb_impar este 0.
+in primul rand aduna nr de patratele cu care piesa de sah trebuie sa se deplaseze intr-o directie la distanta totala parcursa.
+Apoi verific daca piesa de sah va iesi din tabla, daca da, valoarea se converteste folosind functia convertor, daca nu, piesa de sah se va duce pe patratica calculata cu ajutorul numarului de pe biletel, dupa care biletelul va fi sters de acolo.
+
+-poz_caract (Are ca parametru coordonata j)
+Afiseaza coordonata caracter la care se afla piesa de sah.
+Exista 3 posibilitati:
+- Coordonata sa fie de o litera.
+- Coordonata sa fie de 2 litere.
+- Coordonata sa fie de 3 litere.
+
+-alb_sau_negru (Are ca parametru dimensiunea tablei)
+Functia spune daca patratelele albe sunt pe pozitii impare sau nu, in functie de paritatea dimensiunii tablei de sah.
+
+-citire_tabla_sah(Are ca parametru dimensiunea tablei de sah, dar si tabla de sah)
+N este dimensiunea tablei de sah.
+Functia citeste tabla de sah, pornind de la coordonatele N-1 si 0 pentru o rezolvare mai usoara.
+
+-main
+Contine variabilele:
+-N (dimensiunea tablei de sah)
+-alb_impar (In care se tine minte daca patratelele albe sunt pe pozitii impare sau nu)
+-tabla_sah (Matrice unde este stocata tabla de sah)
+-i (Coordonata liniilor tablei de sah)
+-j (Coordonata coloanelor tablei de sah)
+-pi (Pointer pt i)
+-pj (Pointer pt j)
+-distanta (Este stocata distanta totala parcursa de piesa de sah)
+-pd (Pointer pt distanta)
+
+Se cieste N (dimensiunea tablei de sah), apoi tabla de sah.
+Se calculeaza daca patratelele albe sunt pe poz impare sau nu.
+se modifica i si j pt a ne duce la punctul de plecare al piesei de sah.
+apoi se citeste biletelul, si cat timp acesta este diferit de 0 sau exista, si se calculeaza daca este pe patratel alb sau negru, apoi se muta piesa de sah. (Daca este patratel alb, se muta stanga sau dreapta (daca e pozitiv numarul sau nu) cu (numarul de pe biletel) patratele, iar daca este patratel negru, se muta sus sau jos (daca e pozitiv numarul sau nu) cu (numarul de pe biletel) patratele). Atunci cand piesa de sah ajunge pe un biletel folosit sau pe unul pe care scrie 0 se opreste.
+
+Se afiseaza distanta parcursa, apoi coordonatele la care piesa de sah s-a oprit.
+
+
+
+
+	Problema 4 - another queries
+	
+	
+Folosesc biblioteca <stdio.h>
+Fisierul contine 8 functii:
+
+-operatie_tip_1 (Are ca parametrii tabelul sudoku si radical din dimensiunea tabelului de sudoku)
+Functia aceasta este folosita pentru a face operatia de tip 1.
+Aceasta foloseste un vector de frecventa temporar care are toate elementele 1.
+Citim linia si apoi scadem din ea 1 pt a ca tabla de sudoku incepe de la 0 iar linia 1 se afla defapt pe pozitia i = 0.
+Se parcurge linia X si daca este intalnit un numar, se schimba vectorul de frecventa in 0 la pozitia numarului intalnit.
+La final se afiseaza ce numere putem pune pe linia respectiva.
+
+-operatie_tip_2 (Are ca parametrii tabelul sudoku si radical din dimensiunea tabelului de sudoku)
+Functia aceasta este folosita pentru a face operatia de tip 2.
+Aceasta foloseste un vector de frecventa temporar care are toate elementele 1.
+Citim coloana si apoi scadem din ea 1 pt a ca tabla de sudoku incepe de la 0 iar coloana 1 se afla defapt pe pozitia j = 0.
+Se parcurge coloana Y si daca este intalnit un numar, se schimba vectorul de frecventa in 0 la pozitia numarului intalnit.
+La final se afiseaza ce numere putem pune pe coloana respectiva.
+
+-operatie_tip_3 (Are ca parametrii tabelul sudoku si radical din dimensiunea tabelului de sudoku)
+Functia aceasta este folosita pentru a face operatia de tip 3.
+Citim careul si apoi scadem din el 1 pt a calcula coltul de unde incepe careul cerut.
+Se parcurge careul Z si daca este intalnit un numar, se schimba vectorul de frecventa in 0 la pozitia numarului intalnit.
+La final se afiseaza ce numere putem pune in careul respectiv.
+
+-operatia_tip_4 (Are ca parametrii tabelul sudoku si radical din dimensiunea tabelului de sudoku)
+Functia aceasta este folosita pentru a face operatia de tip 4.
+Aceasta foloseste un vector de frecventa temporar care are toate elementele 1.
+Citim linia si apoi scadem din ea 1 pt a ca tabla de sudoku incepe de la 0 iar linia 1 se afla defapt pe pozitia i = 0.
+Citim coloana si apoi scadem din ea 1 pt a ca tabla de sudoku incepe de la 0 iar coloana 1 se afla defapt pe pozitia j = 0.
+Daca la coordonatele X si Y exista deja un numar diferit de 0, atunci afisam N*N 0-uri pentru ca nu se poate pune niciun alt numar acolo, unde N este radical din dimensiunea tabelului de sudoku.
+Daca la coordonatele X si Y este numarul 0 facem urmatorii pasi:
+Se parcurge linia X si daca este intalnit un numar, se schimba vectorul de frecventa in 0 la pozitia numarului intalnit.
+Se parcurge coloana Y si daca este intalnit un numar, se schimba vectorul de frecventa in 0 la pozitia numarului intalnit.
+Calculam unde incepe careul care contine coordonatele X si Y si apoi parcurgem careul si daca este intalnit un numar,
+se schimba vectorul de frecventa in 0 la pozitia numarului intalnit.
+La final se afiseaza ce numere putem pune la coordonatele respective.
+
+-operatia_tip_5 (Are ca parametrii tabelul sudoku)
+Functia aceasta este folosita pentru a face operatia de tip 5.
+Citim linia si apoi scadem din ea 1 pt a ca tabla de sudoku incepe de la 0 iar linia 1 se afla defapt pe pozitia i = 0.
+Citim coloana si apoi scadem din ea 1 pt a ca tabla de sudoku incepe de la 0 iar coloana 1 se afla defapt pe pozitia j = 0.
+Daca la acele coordonate numarul este 0, se citeste inca un numar, care se pune acolo.
+Daca este deja un numar la acele coordonate nu se intampla nimic.
+
+-operatia_de_tip_6 (Are ca parametrii tabelul sudoku si radical din dimensiunea tabelului de sudoku)
+Se initializeaza o variabila care considera ca tabelul de sudoku este complet (are valoarea 2), iar in momentul in care gasim acelasi numar pe aceeasi coloana,
+linie sau careu, de 2 ori, acesta se transforma in 1(Configuratie invalida), iar daca gasim un spatiu care are 0, atunci jocul poate fi continuat si variabila primeste valoarea 0.
+Mai intai se parcurge fiecare linie, iar pentru fiecare linie se initializeaza un vector de frecventa care numara de cate ori apare fiecare numar. Daca fiecare apare o data, linia este completa, daca apare un numar de 2 ori, se da return 1 deoarece avem configuratie invalida, iar daca un numar nu apare deloc, variabila ia valoarea 0.
+Acelasi proces se intampla si pentru fiecare coloana si pentru fiecare careu.
+La final, este returnata variabila. (2 - joc castigat, 1 -configuratie invalida, 0 -jocul se poate continua).
+
+-citire_sudoku (Are ca parametrii radical din dimensiunea tabelului de sudoku si tabelul sudoku)
+Citeste tabelul de sudoku :)
+
+-main 
+Foloseste urmatoarele variabile:
+-N (radical din dimensiunea tabelului de sudoku)
+-M (Numarul de operatii pe care urmeaza sa le citeasca)
+-sudoku[400][400] (tabelul de sudoku)
+Se citeste radical din dimensiunea tabelului de sudoku, apoi numarul de operatii.
+Se citeste tabelul de sudoku.
+Apoi se introduc, de M ori operatii care sunt realizate cu ajutorul functiilor de mai sus.
+Dupa ce se citesc cele M operatii, se termina executia programului.
+
+Sper ca ai inteles ce am incercat sa explic, Si sper ca o sa iau punctaj maxim :)
